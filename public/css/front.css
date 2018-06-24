@@ -1,0 +1,19 @@
+.list-ukm .ukm-name {
+    text-align: center;
+    background-color: #3498db;
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 30px;
+}
+.list-ukm .ui.segment,
+.list-ukm .ui.segment img {
+    border-radius: 100%;
+}
+.menu.custom-center img {
+    height: 150px;
+    width: 150px;
+    margin: 10px auto;
+}
+.hero-title {
+    margin-top: 1em !important;
+}

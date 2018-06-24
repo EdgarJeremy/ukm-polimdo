@@ -12,5 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('front.index');
+});
+
+Route::get('/ukm/{id}', function(){
+    return 1;
 });
