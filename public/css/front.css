@@ -4,6 +4,9 @@
     color: #ffffff;
     padding: 10px;
     border-radius: 30px;
+    display: block;
+    margin-top: 10px;
+    font-size: 20px;
 }
 .list-ukm .ui.segment,
 .list-ukm .ui.segment img {
