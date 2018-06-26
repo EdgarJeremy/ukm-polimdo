@@ -50,8 +50,9 @@
     }
 </style>
 <script>
-    $('.ui.dropdown').dropdown();
-
+    $('.ui.dropdown').dropdown({
+        on: 'hover'
+    });
 </script>
 </body>
 

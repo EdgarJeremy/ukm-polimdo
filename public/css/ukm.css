@@ -1,18 +1,83 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+* {
+    font-family: 'Lato', sans-serif;
+}
+
+/* .ukm-header-menu {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    right: 0;
+} */
+
 .ukm-header-menu div.item img {
     width: 100px !important;
     height: 100px !important;
 }
+
 .ukm-header-menu .second {
     margin: 0 !important;
 }
+
 .ukm-header-menu .first h1 {
     font-size: 40px;
 }
+
 .ukm-header-menu .first div.item:first-child {
     justify-content: flex-start;
     -webkit-justify-content: flex-start;
 }
+
 .ukm-header-menu .first div.item:last-child {
     justify-content: flex-end;
     -webkit-justify-content: flex-end;
+}
+
+.ukm-header-menu .second .item {
+    padding: 20px 0 !important;
+}
+
+.ukm-header-menu .item.item-active {
+    background-color: rgba(0, 0, 0, 0.3) !important;
+}
+
+.img-pengumuman {
+    width: 100%;
+    /* height: 200px; */
+    object-fit: cover;
+}
+
+.img-tentang {
+    width: 300px;
+}
+
+.end-page {
+    padding: 50px 0;
+    display: block;
+}
+
+/** Treant **/
+
+.chart {
+    height: 159px;
+    width: 332px;
+    margin: 5px;
+    margin: 5px auto;
+    border: 3px solid #DDD;
+    border-radius: 3px;
+}
+
+.node {
+    color: #9CB5ED;
+    border: 2px solid #C8C8C8;
+    border-radius: 3px;
+    padding: 30px;
+}
+
+.node p {
+    font-size: 20px;
+    line-height: 20px;
+    height: 20px;
+    font-weight: bold;
+    margin: 0;
 }
