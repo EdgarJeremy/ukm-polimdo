@@ -16,19 +16,25 @@ class CreateMembersTable extends Migration
         Schema::create('members', function (Blueprint $table) {
             $table->increments('id');
             $table->string('full_name');
-            $table->string('nim');
-            $table->string('jurusan');
-            $table->string('prodi');
+            $table->integer('nim');
             $table->integer('semester');
-            $table->string('angkatan');
+            $table->integer('generation');
             $table->string('phone');
             $table->string('address');
             $table->text('reason');
             $table->text('hobbies');
 
+            //
             $table->unsignedInteger('ukm_id');
             $table->foreign('ukm_id')->references('id')->on('ukms')->onDelete('cascade');
 
+            $table->unsignedInteger('major_id');
+            $table->foreign('major_id')->references('id')->on('majors')->onDelete('cascade');
+
+            $table->unsignedInteger('study_program_id');
+            $table->foreign('study_program_id')->references('id')->on('study_programs')->onDelete('cascade');
+
+            //
             $table->timestamps();
         });
     }

@@ -6,11 +6,11 @@
                     <img src="{{asset('/images/logo-poli.png')}}">
                 </div>
                 <div class="centered">
-                    <h1>UKM - English Club</h1>
+                    <h1>{{$ukm->name}}</h1>
                     <p>Web Portal<br />Politeknik Negeri Manado</p>
                 </div>
                 <div class="item">
-                    <img src="{{asset('/images/templates/semantic-ui/avatar/nan.jpg')}}">
+                    <img src="{{asset('/storage/logos/'.$ukm->logo)}}">
                 </div>
             </div>
         </div>
@@ -34,6 +34,21 @@
                 <div class="menu">
                     <a href="{{route('ukm-kegiatan', ['id' => $id])}}" class="item">Informasi Kegiatan</a>
                     <a href="{{route('ukm-pengumuman', ['id' => $id])}}" class="item">Pengumuman</a>
+                </div>
+            </div>
+
+            <!-- Keanggotaan -->
+            <div class="ui dropdown link pointing item {{
+                Route::currentRouteName() === 'ukm-struktur_organisasi' ||
+                Route::currentRouteName() === 'ukm-keanggotaan' ||
+                Route::currentRouteName() === 'ukm-pendaftaran' ? 'item-active' : ''
+            }} header">
+                <span class="">Keanggotaan</span>
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                    <a href="{{route('ukm-struktur_organisasi', ['id' => $id])}}" class="item">Struktur Organisasi</a>
+                    <a href="{{route('ukm-keanggotaan', ['id' => $id])}}" class="item">Informasi Anggota</a>
+                    <a href="{{route('ukm-pendaftaran', ['id' => $id])}}" class="item">Pendaftaran Anggota Baru</a>
                 </div>
             </div>
 
@@ -79,20 +94,6 @@
                 </div>
             </div>
 
-            <!-- Keanggotaan -->
-            <div class="ui dropdown link pointing item {{
-                Route::currentRouteName() === 'ukm-struktur_organisasi' ||
-                Route::currentRouteName() === 'ukm-keanggotaan' ||
-                Route::currentRouteName() === 'ukm-pendaftaran' ? 'item-active' : ''
-            }} header">
-                <span class="">Keanggotaan</span>
-                <i class="dropdown icon"></i>
-                <div class="menu">
-                    <a href="{{route('ukm-struktur_organisasi', ['id' => $id])}}" class="item">Struktur Organisasi</a>
-                    <a href="{{route('ukm-keanggotaan', ['id' => $id])}}" class="item">Informasi Anggota</a>
-                    <a href="{{route('ukm-pendaftaran', ['id' => $id])}}" class="item">Pendaftaran Anggota Baru</a>
-                </div>
-            </div>
         </div>
     </div>
 </div>

@@ -23,62 +23,15 @@
         Daftar UKM Terdaftar
     </h1>
     <div class="ui stackable four column grid container list-ukm">
+        @foreach($listUkm as $ukm)
         <div class="column">
             <div class="ui circular rotate reveal image segment">
-                <img src="{{asset('/images/templates/semantic-ui/wireframe/white-image.png')}}" class="visible content">
-                <img src="{{asset('/images/templates/semantic-ui/wireframe/white-image.png')}}" class="hidden content">
+                <img src="{{asset('/storage/logos/'.$ukm->logo)}}" class="visible content ukm-logo">
+                <img src="{{asset('/storage/logos/'.$ukm->logo)}}" class="hidden  content ukm-logo">
             </div>
-            <a href="{{route('ukm-page', ['id' => 1])}}" class="ukm-name">Lorem Ipsum</a>
+            <a href="{{route('ukm-page', ['id' => $ukm->id])}}" class="ukm-name">{{$ukm->name}}</a>
         </div>
-        <div class="column">
-            <div class="ui circular rotate reveal image segment">
-                <img src="{{asset('/images/templates/semantic-ui/wireframe/white-image.png')}}" class="visible content">
-                <img src="{{asset('/images/templates/semantic-ui/wireframe/white-image.png')}}" class="hidden content">
-            </div>
-            <a href="{{route('ukm-page', ['id' => 1])}}" class="ukm-name">Lorem Ipsum</a>
-        </div>
-        <div class="column">
-            <div class="ui circular rotate reveal image segment">
-                <img src="{{asset('/images/templates/semantic-ui/wireframe/white-image.png')}}" class="visible content">
-                <img src="{{asset('/images/templates/semantic-ui/wireframe/white-image.png')}}" class="hidden content">
-            </div>
-            <a href="{{route('ukm-page', ['id' => 1])}}" class="ukm-name">Lorem Ipsum</a>
-        </div>
-        <div class="column">
-            <div class="ui circular rotate reveal image segment">
-                <img src="{{asset('/images/templates/semantic-ui/wireframe/white-image.png')}}" class="visible content">
-                <img src="{{asset('/images/templates/semantic-ui/wireframe/white-image.png')}}" class="hidden content">
-            </div>
-            <a href="{{route('ukm-page', ['id' => 1])}}" class="ukm-name">Lorem Ipsum</a>
-        </div>
-        <div class="column">
-            <div class="ui circular rotate reveal image segment">
-                <img src="{{asset('/images/templates/semantic-ui/wireframe/white-image.png')}}" class="visible content">
-                <img src="{{asset('/images/templates/semantic-ui/wireframe/white-image.png')}}" class="hidden content">
-            </div>
-            <a href="{{route('ukm-page', ['id' => 1])}}" class="ukm-name">Lorem Ipsum</a>
-        </div>
-        <div class="column">
-            <div class="ui circular rotate reveal image segment">
-                <img src="{{asset('/images/templates/semantic-ui/wireframe/white-image.png')}}" class="visible content">
-                <img src="{{asset('/images/templates/semantic-ui/wireframe/white-image.png')}}" class="hidden content">
-            </div>
-            <a href="{{route('ukm-page', ['id' => 1])}}" class="ukm-name">Lorem Ipsum</a>
-        </div>
-        <div class="column">
-            <div class="ui circular rotate reveal image segment">
-                <img src="{{asset('/images/templates/semantic-ui/wireframe/white-image.png')}}" class="visible content">
-                <img src="{{asset('/images/templates/semantic-ui/wireframe/white-image.png')}}" class="hidden content">
-            </div>
-            <a href="{{route('ukm-page', ['id' => 1])}}" class="ukm-name">Lorem Ipsum</a>
-        </div>
-        <div class="column">
-            <div class="ui circular rotate reveal image segment">
-                <img src="{{asset('/images/templates/semantic-ui/wireframe/white-image.png')}}" class="visible content">
-                <img src="{{asset('/images/templates/semantic-ui/wireframe/white-image.png')}}" class="hidden content">
-            </div>
-            <a href="{{route('ukm-page', ['id' => 1])}}" class="ukm-name">Lorem Ipsum</a>
-        </div>
+        @endforeach
     </div>
     <div class="ui horizontal divider header"></div>
 {{-- </div> --}}

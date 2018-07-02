@@ -36,7 +36,16 @@
             </div>
         </div>
         <div class="ui attached segment">
+            @if(session('status'))
+            <div class="ui success message">
+                <i class="close icon"></i>
+                <div class="">
+                    Pendaftaran berhasil
+                </div>
+            </div>
+            @endif
             <form onsubmit="next(event)" method="post" class="ui form">
+                {{csrf_field()}}
                 <!-- Step 1 -->
                 <div id="step1">
                     <div class="field">
@@ -49,14 +58,16 @@
                     </div>
                     <div class="field">
                         <label>Jurusan</label>
-                        <select name="jurusan" required>
+                        <select name="major_id" required>
                             <option value=""></option>
-                            <option value="">Teknik Elektro</option>
+                            @foreach($majors as $major)
+                            <option value="{{$major->id}}">{{$major->name}}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="field">
                         <label>Prodi</label>
-                        <select name="prodi" required>
+                        <select name="study_program_id" required>
                             <option value=""></option>
                             <option value="">Teknik Informatika</option>
                         </select>
@@ -64,6 +75,10 @@
                     <div class="field">
                         <label>Semester</label>
                         <input type="number" name="semester" required/>
+                    </div>
+                    <div class="field">
+                        <label>Angkatan</label>
+                        <input type="number" name="generation" required/>
                     </div>
                     <div class="field">
                         <label>Nomor Telefon</label>
@@ -87,18 +102,22 @@
                     </div>
                     <div class="field">
                         <label>Hobi</label>
-                        <textarea name="hobby" rows="2" required></textarea>
+                        <textarea name="hobbies" rows="2" required></textarea>
                     </div>
+                    <button onclick="previous(event)" type="button" class="ui right labeled icon button">
+                                    <i class="right arrow icon"></i>
+                                    Sebelumnya
+                            </button>
                     <button type="submit" class="ui right labeled icon button">
                                     <i class="right arrow icon"></i>
-                                    Next
+                                    Lanjut
                             </button>
                 </div>
 
                 <!-- Step 3 -->
                 <div id="step3">
                     <h3>Apakah data ini sudah benar?</h3>
-                    <p>Jika ya, klik tombol dibawah</p>
+                    <p>Jika ya, klik tombol hijau dibawah, jika tidak, kembali ke langkah sebelumnya untuk membetulkan data</p>
                     <table class="ui definition table">
                         <thead>
                             <tr>
@@ -117,15 +136,19 @@
                             </tr>
                             <tr>
                                 <td>Jurusan</td>
-                                <td id="r_jurusan">--</td>
+                                <td id="r_major_id">--</td>
                             </tr>
                             <tr>
                                 <td>Prodi</td>
-                                <td id="r_prodi">--</td>
+                                <td id="r_study_program_id">--</td>
                             </tr>
                             <tr>
                                 <td>Semester</td>
                                 <td id="r_semester">--</td>
+                            </tr>
+                            <tr>
+                                <td>Angkatan</td>
+                                <td id="r_generation">--</td>
                             </tr>
                             <tr>
                                 <td>Nomor Telefon</td>
@@ -141,12 +164,17 @@
                             </tr>
                             <tr>
                                 <td>Hobi</td>
-                                <td id="r_hobby">--</td>
+                                <td id="r_hobbies">--</td>
                             </tr>
                         </tbody>
                     </table>
-                    <button class="fluid ui button green">
-                        Kirim Data
+                    <button onclick="previous(event)" type="button" class="ui left labeled icon button">
+                            <i class="left arrow icon"></i>
+                            Sebelumnya
+                    </button>
+                    <button type="submit" class="ui right green labeled icon button">
+                            <i class="save icon"></i>
+                            Ya, daftar sekarang
                     </button>
                 </div>
 
@@ -160,6 +188,20 @@
         $('#step2').hide();
         $('#step3').hide();
         $('#step2 textarea').prop('required', false);
+
+        $('select[name="major_id"]').on('change', function(){
+            var major_id = $(this).val();
+            if(major_id) {
+                $.get(baseURL + '/api/majors/' + major_id).then(function(res){
+                    var study_programs = res.study_programs;
+                    var $select = $('select[name="study_program_id"]');
+                    $select.html("<option value=''></option>");
+                    for(var i = 0; i < study_programs.length; i++) {
+                        $select.append("<option value='"+study_programs[i].id+"'>"+study_programs[i].name+"</option>");
+                    }
+                });
+            }
+        });
     });
 
     var step = 1;
@@ -203,6 +245,25 @@
         }
 
         
+    }
+
+    function previous(e) {
+        step--;
+        if(step === 1){
+            $('#step1').show();
+            $('#step1-label').addClass('active');
+
+            $('#step2').hide();
+            $('#step2-label').removeClass('active');
+            $("#step2 textarea").prop('required', false);
+        } else if(step === 2) {
+            $('#step3').hide();
+            $('#step3-label').removeClass('active');
+
+            $('#step2').show();
+            $('#step2-label').addClass('active');
+            $("#step2 textarea").prop('required', true);
+        }
     }
 
 </script>

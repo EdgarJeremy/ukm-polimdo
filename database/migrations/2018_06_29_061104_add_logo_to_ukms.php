@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserRelationToUkms extends Migration
+class AddLogoToUkms extends Migration
 {
     /**
      * Run the migrations.
@@ -14,9 +14,8 @@ class CreateUserRelationToUkms extends Migration
     public function up()
     {
         //
-        Schema::table('users', function(Blueprint $table) {
-            $table->unsignedInteger('ukm_id')->nullable();
-            $table->foreign('ukm_id')->references('id')->on('ukms')->onDelete('cascade');
+        Schema::table('ukms', function(Blueprint $table){
+            $table->string('logo');
         });
     }
 
@@ -28,9 +27,8 @@ class CreateUserRelationToUkms extends Migration
     public function down()
     {
         //
-        Schema::table('users', function(Blueprint $table){
-            $table->dropForeign(['ukm_id']);
-            $table->dropColumn('ukm_id');
+        Schema::table('ukms', function(Blueprint $table){
+            $table->dropColumn('logo');
         });
     }
 }

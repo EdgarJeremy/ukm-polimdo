@@ -15,5 +15,6 @@
         <link href="{{asset('/css/pandoc-code-highlight.css')}}" rel="stylesheet" type="text/css" />
         <link rel="icon" href="{{asset('/images/logo-poli.png')}}" />
         <script src="{{asset('/dist/jquery/jquery.min.js')}}"></script>
+        <script src="{{asset('/dist/semantic-ui/semantic.min.js')}}"></script>
     </head>
     <body>

@@ -22,31 +22,37 @@ Auth::routes();
  */
 
 Route::get('/', function () {
-    return view('front.index');
+    $listUkm = App\Ukm::all();
+    return view('front.index')->with(['listUkm' => $listUkm]);
 })->name('root');
 
 /**
  * UKM Routes
  */
 Route::group(['prefix' => 'ukm'], function(){
-    Route::get('/{id}', 'UkmController@home')->name('ukm-page');
-    Route::get('/{id}/kegiatan', 'UkmController@kegiatan')->name('ukm-kegiatan');
-    Route::get('/{id}/pengumuman', 'UkmController@pengumuman')->name('ukm-pengumuman');
-    Route::get('/{id}/tentang', 'UkmController@tentang')->name('ukm-tentang');
-    Route::get('/{id}/faq', 'UkmController@faq')->name('ukm-faq');
-    Route::get('/{id}/kontak', 'UkmController@kontak')->name('ukm-kontak');
-    Route::post('/{id}/kontak', 'UkmController@simpan_kontak');
-    Route::get('/{id}/galeri/{tahun}', 'UkmController@galeri')->name('ukm-galeri');
-    Route::get('/{id}/struktur_organisasi', 'UkmController@struktur_organisasi')->name('ukm-struktur_organisasi');
-    Route::get('/{id}/keanggotaan', 'UkmController@keanggotaan')->name('ukm-keanggotaan');
-    Route::get('/{id}/pendaftaran', 'UkmController@pendaftaran')->name('ukm-pendaftaran');
+    Route::get('/{id}', 'UkmPagesController@home')->name('ukm-page');
+    Route::get('/{id}/kegiatan', 'UkmPagesController@kegiatan')->name('ukm-kegiatan');
+    Route::get('/{id}/pengumuman', 'UkmPagesController@pengumuman')->name('ukm-pengumuman');
+    Route::get('/{id}/tentang', 'UkmPagesController@tentang')->name('ukm-tentang');
+    Route::get('/{id}/faq', 'UkmPagesController@faq')->name('ukm-faq');
+    Route::get('/{id}/kontak', 'UkmPagesController@kontak')->name('ukm-kontak');
+    Route::post('/{id}/kontak', 'UkmPagesController@simpan_kontak');
+    Route::get('/{id}/galeri/{tahun}', 'UkmPagesController@galeri')->name('ukm-galeri');
+    Route::get('/{id}/struktur_organisasi', 'UkmPagesController@struktur_organisasi')->name('ukm-struktur_organisasi');
+    Route::get('/{id}/keanggotaan', 'UkmPagesController@keanggotaan')->name('ukm-keanggotaan');
+    Route::get('/{id}/pendaftaran', 'UkmPagesController@pendaftaran')->name('ukm-pendaftaran');
+    Route::post('/{id}/pendaftaran', 'UkmPagesController@simpan_pendaftaran');
 });
 
 /**
  * Back/Administrator Routes 
  */
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
-    Route::get('/', 'AdminController@index');
+    Route::get('/', 'AdminPagesController@index')->name('admin-home');
+    Route::get('/message', 'AdminPagesController@message')->name('admin-message');
+    Route::get('/delete_message/{id}', 'AdminPagesController@delete_message')->name('admin-delete_message');
+    Route::get('/profile', 'AdminPagesController@profile')->name('admin-profile');
+    Route::post('/profile', 'AdminPagesController@save_profile')->name('admin-save_profile');
     
     Route::get('/logout', function(){
         Auth::logout();

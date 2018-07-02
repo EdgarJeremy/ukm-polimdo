@@ -4,7 +4,7 @@
 <div class="row" id="page-header">
   <div class="ui basic segment">
     <h2 class="ui header">
-      Welcome to English Club!
+      Welcome to {{$ukm->name}}!
       </h1>
       <span>A simple example of creating a blog with Semanti-UI.</span>
   </div>

@@ -8,7 +8,9 @@
         @include('admin._sidebar')
         <!-- Content part -->
         <div class="column" id="content">
-            @yield('content')
+            {{-- <div class="card"> --}}
+                @yield('content')
+            {{-- </div> --}}
         </div>
     </div>
 </div>

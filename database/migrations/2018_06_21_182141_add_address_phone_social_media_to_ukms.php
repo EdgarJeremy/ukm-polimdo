@@ -32,5 +32,13 @@ class AddAddressPhoneSocialMediaToUkms extends Migration
     public function down()
     {
         //
+        Schema::table('ukms', function(Blueprint $table){
+            $table->dropColumn('address');
+            $table->dropColumn('phone');
+            $table->dropColumn('facebook');
+            $table->dropColumn('instagram');
+            $table->dropColumn('youtube');
+            $table->dropColumn('website');
+        });
     }
 }

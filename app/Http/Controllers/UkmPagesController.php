@@ -4,54 +4,70 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Message;
+use App\Ukm;
+use App\Major;
+use App\StudyProgram;
+use App\Member;
 
-class UkmController extends Controller
+class UkmPagesController extends Controller
 {
     //
     public function home($id) {
+        $ukm = $this->ukm($id);
+
         return view('ukm.index')->with([
             'id' => $id,
-            'title' => 'Home - English Club'
+            'ukm' => $ukm
         ]);
     }
 
     //
     public function kegiatan($id) {
+        $ukm = $this->ukm($id);
+
         return view('ukm.kegiatan')->with([
             'id' => $id,
-            'title' => 'Kegiatan - English Club'
+            'ukm' => $ukm
         ]);
     }
 
     //
     public function pengumuman($id) {
+        $ukm = $this->ukm($id);
+
         return view('ukm.pengumuman')->with([
             'id' => $id,
-            'title' => 'Pengumuman - English Club'
+            'ukm' => $ukm
         ]);
     }
 
     //
     public function tentang($id) {
+        $ukm = $this->ukm($id);
+
         return view('ukm.tentang')->with([
             'id' => $id,
-            'title' => 'Profil - English Club'
+            'ukm' => $ukm
         ]);
     }
 
     //
     public function faq($id) {
+        $ukm = $this->ukm($id);
+
         return view('ukm.faq')->with([
             'id' => $id,
-            'title' => 'FAQ - English Club'
+            'ukm' => $ukm
         ]);
     }
 
     //
     public function kontak($id) {
+        $ukm = $this->ukm($id);
+
         return view('ukm.kontak')->with([
             'id' => $id,
-            'title' => 'Kontak - English Club'
+            'ukm' => $ukm
         ]);
     }
 
@@ -60,39 +76,66 @@ class UkmController extends Controller
         $post_data = $request->all();
         $post_data['ukm_id'] = $id;
         $message = Message::create($post_data);
-        return $message;
+
+        return redirect()->route('ukm-kontak', ['id' => $id])->with('status', $message ? true : false);
     }
 
     //
     public function galeri($id, $tahun) {
+        $ukm = $this->ukm($id);
+
         return view('ukm.galeri')->with([
             'id' => $id,
-            'title' => 'Galeri ' . $tahun . ' - English Club',
+            'ukm' => $ukm,
             'tahun' => $tahun
         ]);
     }
 
     //
     public function struktur_organisasi($id) {
+        $ukm = $this->ukm($id);
+
         return view('ukm.struktur_organisasi')->with([
             'id' => $id,
-            'title' => 'Struktur Organisasi - English Club'
+            'ukm' => $ukm
         ]);
     }
 
     //
     public function keanggotaan($id) {
+        $ukm = $this->ukm($id);
+
         return view('ukm.keanggotaan')->with([
             'id' => $id,
-            'title' => 'Keanggotaan - English Club'
+            'ukm' => $ukm
         ]);
     }
 
     //
     public function pendaftaran($id) {
+        $ukm = $this->ukm($id);
+        $majors = Major::all();
+
         return view('ukm.pendaftaran')->with([
             'id' => $id,
-            'title' => 'Pendaftaran Anggota - English Club'
+            'ukm' => $ukm,
+            'majors' => $majors
         ]);
+    }
+
+    /** */
+    public function simpan_pendaftaran(Request $request, $id) {
+        $post_data = $request->all();
+        $post_data['ukm_id'] = $id;
+        $post_data['approved'] = 0;
+        $member = Member::create($post_data);
+
+        return redirect()->route('ukm-pendaftaran', ['id' => $id])->with('status', $member ? true : false);
+    }
+
+
+
+    private function ukm($id) {
+        return Ukm::findOrFail($id);
     }
 }
