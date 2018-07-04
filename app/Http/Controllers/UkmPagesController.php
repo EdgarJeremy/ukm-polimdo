@@ -133,9 +133,9 @@ class UkmPagesController extends Controller
         return redirect()->route('ukm-pendaftaran', ['id' => $id])->with('status', $member ? true : false);
     }
 
-
-
     private function ukm($id) {
-        return Ukm::findOrFail($id);
+        $ukm = Ukm::findOrFail($id);
+        $ukm->faqs = json_decode($ukm->faqs);
+        return $ukm;
     }
 }

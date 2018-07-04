@@ -52,8 +52,16 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
     Route::get('/message', 'AdminPagesController@message')->name('admin-message');
     Route::get('/delete_message/{id}', 'AdminPagesController@delete_message')->name('admin-delete_message');
     Route::get('/profile', 'AdminPagesController@profile')->name('admin-profile');
-    Route::post('/profile', 'AdminPagesController@save_profile')->name('admin-save_profile');
-    
+    Route::post('/profile', 'AdminPagesController@save_profile');
+    Route::get('/user', 'AdminPagesController@user')->name('admin-user');
+    Route::post('/user', 'AdminPagesController@save_user');
+    Route::get('/cash', 'AdminPagesController@cash')->name('admin-cash');
+    Route::post('/cash', 'AdminPagesController@save_cash');
+    Route::get('/delete_cash/{id}', 'AdminPagesController@delete_cash')->name('admin-delete_cash');
+    Route::get('/transaction', 'AdminPagesController@transaction')->name('admin-transaction');
+    Route::post('/transaction', 'AdminPagesController@save_transaction');
+    Route::get('/report', 'AdminPagesController@report')->name('admin-report');
+
     Route::get('/logout', function(){
         Auth::logout();
         return redirect('/');

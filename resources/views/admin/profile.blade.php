@@ -10,14 +10,24 @@
     </div>
     <div class="ui divider"></div>
     <div class="row">
-        <form class="ui form fluid error" method="post" enctype="multipart/form-data">
+        <form class="ui form fluid error success" method="post" enctype="multipart/form-data">
             {{csrf_field()}}
+
+            <!-- Errors -->
             @foreach($errors->all() as $message)
             <div class="ui error message">
                 <div class="header">Terjadi kesalahan!</div>
                 <p>{{$message}}</p>
             </div>
             @endforeach
+            <!-- Success -->
+            @if(session('status'))
+            <div class="ui success message">
+                <div class="header">Data tersimpan!</div>
+                <p>Data UKM berhasil disimpan</p>
+            </div>
+            @endif
+
             <h4 class="ui dividing header">Informasi Dasar</h4>
             <div class="field">
                 <label>Profil</label>

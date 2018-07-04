@@ -18,24 +18,30 @@
                     <i class="dropdown icon"></i> Konfigurasi
                 </div>
                 <div class="{{
-                    Route::currentRouteName() === 'admin-profile' ? 'active' : ''
+                    Route::currentRouteName() === 'admin-profile' ||
+                    Route::currentRouteName() === 'admin-user' ? 'active' : ''
                 }} content">
                     <a href="{{route('admin-profile')}}" class="{{Route::currentRouteName() === 'admin-profile' ? 'active' : ''}} item"><i class="building icon"></i>&nbsp;&nbsp;&nbsp;Profil UKM</a>
-                    <a class="item"><i class="user icon"></i>&nbsp;&nbsp;&nbsp;Pengguna</a>
+                    <a href="{{route('admin-user')}}" class="{{Route::currentRouteName() === 'admin-user' ? 'active' : ''}} item"><i class="user icon"></i>&nbsp;&nbsp;&nbsp;Pengguna</a>
                 </div>
                 <div class="title">
                     <i class="dropdown icon"></i> Keuangan
                 </div>
-                <div class="content">
-                    <a class="item"><i class="money bill alternate icon"></i>&nbsp;&nbsp;&nbsp;Kas</a>
-                    <a class="item"><i class="money bill alternate icon"></i>&nbsp;&nbsp;&nbsp;Transaksi</a>
-                    <a href="" class="item"><i class="table icon"></i>&nbsp;&nbsp;&nbsp;Laporan Keuangan</a>
+                <div class="{{
+                    Route::currentRouteName() === 'admin-cash' ||
+                    Route::currentRouteName() === 'admin-transaction' ||
+                    Route::currentRouteName() === 'admin-report' ? 'active' : ''
+                }} content">
+                    <a href="{{route('admin-cash')}}" class="{{Route::currentRouteName() === 'admin-cash' ? 'active' : ''}} item"><i class="money bill alternate icon"></i>&nbsp;&nbsp;&nbsp;Kas</a>
+                    <a href="{{route('admin-transaction')}}" class="{{Route::currentRouteName() === 'admin-transaction' ? 'active' : ''}} item"><i class="money bill alternate icon"></i>&nbsp;&nbsp;&nbsp;Transaksi</a>
+                    <a href="{{route('admin-report')}}" class="{{Route::currentRouteName() === 'admin-report' ? 'active' : ''}} item"><i class="table icon"></i>&nbsp;&nbsp;&nbsp;Laporan Keuangan</a>
                 </div>
                 <div class="title">
-                    <i class="dropdown icon"></i> Surat
+                    <i class="dropdown icon"></i> File
                 </div>
                 <div class="content">
                     <a class="item"><i class="envelope open icon"></i>&nbsp;&nbsp;&nbsp;Edaran</a>
+                    <a class="item"><i class="picture icon"></i>&nbsp;&nbsp;&nbsp;Galeri</a>
                 </div>
                 <div class="title">
                     <i class="dropdown icon"></i> Keanggotaan

@@ -108,6 +108,9 @@ body {
   text-align: center;
   border-radius: 0 !important;
 }
+.faq-group-input .ui.divider {
+  margin: 10px 0 !important;
+}
 .logo-current {
   width: 200px;
   height: 200px;
