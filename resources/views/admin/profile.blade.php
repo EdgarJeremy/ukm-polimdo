@@ -45,8 +45,15 @@
             <div class="field">
                 <label>Arti Logo</label>
                 <div class="field">
-                    <input type="text" name="logo_meaning" value="{{$ukm->logo_meaning}}" required>
+                    <textarea name="logo_meaning" required>{{$ukm->logo_meaning}}</textarea>
                 </div>
+            </div>
+            <div class="field">
+                <label>Struktur Organisasi</label>
+                <div class="field">
+                    <input type="file" name="organization_chart_file">
+                </div>
+                <img class="logo-current" src="{{asset('/storage/organization_charts/'.$ukm->organization_chart)}}" alt="Struktur Organisasi">
             </div>
             <div class="two fields">
                 <div class="field">

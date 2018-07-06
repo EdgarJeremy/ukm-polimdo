@@ -39,24 +39,35 @@
                 <div class="title">
                     <i class="dropdown icon"></i> File
                 </div>
-                <div class="content">
-                    <a class="item"><i class="envelope open icon"></i>&nbsp;&nbsp;&nbsp;Edaran</a>
-                    <a class="item"><i class="picture icon"></i>&nbsp;&nbsp;&nbsp;Galeri</a>
+                <div class="{{
+                    Route::currentRouteName() === 'admin-letter_in' ||
+                    Route::currentRouteName() === 'admin-letter_out' ||
+                    Route::currentRouteName() === 'admin-gallery' ? 'active' : ''
+                }} content">
+                    <a href="{{route('admin-letter_in')}}" class="{{Route::currentRouteName() === 'admin-letter_in' ? 'active' : ''}} item"><i class="envelope icon"></i>&nbsp;&nbsp;&nbsp;Edaran Masuk</a>
+                    <a href="{{route('admin-letter_out')}}" class="{{Route::currentRouteName() === 'admin-letter_out' ? 'active' : ''}} item"><i class="envelope icon"></i>&nbsp;&nbsp;&nbsp;Edaran Keluar</a>
+                    <a href="{{route('admin-gallery')}}" class="{{Route::currentRouteName() === 'admin-gallery' ? 'active' : ''}} item"><i class="picture icon"></i>&nbsp;&nbsp;&nbsp;Galeri</a>
                 </div>
                 <div class="title">
                     <i class="dropdown icon"></i> Keanggotaan
                 </div>
-                <div class="content">
-                    <a class="item"><i class="sitemap icon"></i>&nbsp;&nbsp;&nbsp;Struktur Organisasi</a>
-                    <a href="" class="item"><i class="users icon"></i>&nbsp;&nbsp;&nbsp;Informasi Anggota</a>
-                    <a href="" class="item"><i class="users icon"></i>&nbsp;&nbsp;&nbsp;Pendaftaran Anggota Baru</a>
+                <div class="{{
+                    Route::currentRouteName() === 'admin-organization' ||
+                    Route::currentRouteName() === 'admin-member' ||
+                    Route::currentRouteName() === 'admin-registration' ? 'active' : ''
+                }} content">
+                    <a href="{{route('admin-member')}}" class="{{Route::currentRouteName() === 'admin-member' ? 'active' : ''}} item"><i class="users icon"></i>&nbsp;&nbsp;&nbsp;Informasi Anggota</a>
+                    <a href="{{route('admin-registration')}}" class="{{Route::currentRouteName() === 'admin-registration' ? 'active' : ''}} item"><i class="users icon"></i>&nbsp;&nbsp;&nbsp;Pendaftaran Anggota</a>
                 </div>
                 <div class="title">
                     <i class="dropdown icon"></i> Kegiatan
                 </div>
-                <div class="content">
-                    <a href="" class="item"><i class="calendar alternate outline icon"></i>&nbsp;&nbsp;&nbsp;Informasi Kegiatan</a>
-                    <a href="" class="item"><i class="clock outline icon"></i>&nbsp;&nbsp;&nbsp;Rapat & Pertemuan</a>
+                <div class="{{
+                    Route::currentRouteName() === 'admin-activity' ||
+                    Route::currentRouteName() === 'admin-announcement' ? 'active' : ''
+                }} content">
+                    <a href="{{route('admin-activity')}}" class="{{Route::currentRouteName() === 'admin-activity' ? 'active' : ''}} item"><i class="calendar alternate outline icon"></i>&nbsp;&nbsp;&nbsp;Informasi Kegiatan</a>
+                    <a href="{{route('admin-announcement')}}" class="{{Route::currentRouteName() === 'admin-announcement' ? 'active' : ''}} item"><i class="clock outline icon"></i>&nbsp;&nbsp;&nbsp;Pengumuman</a>
                 </div>
             </div>
         </div>

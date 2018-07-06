@@ -27,7 +27,8 @@
 
             <!-- Kegiatan -->
             <div class="ui dropdown item pointing {{
-                Route::currentRouteName() === 'ukm-kegiatan' || 
+                Route::currentRouteName() === 'ukm-kegiatan' ||
+                Route::currentRouteName() === 'ukm-baca_kegiatan' || 
                 Route::currentRouteName() === 'ukm-pengumuman' ? 'item-active' : ''}} header">
                 <span class="">Kegiatan</span>
                 <i class="dropdown icon"></i>
@@ -48,7 +49,9 @@
                 <div class="menu">
                     <a href="{{route('ukm-struktur_organisasi', ['id' => $id])}}" class="item">Struktur Organisasi</a>
                     <a href="{{route('ukm-keanggotaan', ['id' => $id])}}" class="item">Informasi Anggota</a>
+                    @if($ukm->registration)
                     <a href="{{route('ukm-pendaftaran', ['id' => $id])}}" class="item">Pendaftaran Anggota Baru</a>
+                    @endif
                 </div>
             </div>
 

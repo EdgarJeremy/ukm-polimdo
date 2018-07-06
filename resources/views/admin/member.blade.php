@@ -1,17 +1,14 @@
-@extends('ukm._root') 
+@extends('admin._root')
 @section('content')
 
-<div class="row" id="page-header">
-    <div class="ui basic segment">
-        <h2 class="ui header">
-            Keanggotaan
-            </h1>
-            <span>A simple example of creating a blog with Semanti-UI.</span>
+<div class="ui grid">
+    <div class="row">
+        <h1 class="ui huge header">
+            Anggota Terdaftar {{Auth::user()->ukm->name}}
+        </h1>
     </div>
-</div>
-
-<div class="row" id="article">
-    <div class="column">
+    <div class="ui divider"></div>
+    <div class="row">
         <form class="fluid" action="">
             <div class="ui fluid action input">
                 <input name="q" type="text" placeholder="Nama anggota..." value={{Input::get( 'q')}}>
@@ -25,9 +22,11 @@
                     <th>NIM</th>
                     <th>Semester</th>
                     <th>Angkatan</th>
+                    <th>No. Telefon</th>
                     <th>Alamat</th>
                     <th>Jurusan</th>
                     <th>Program Studi</th>
+                    <th>Detail</th>
                 </tr>
             </thead>
             <tbody>
@@ -37,20 +36,28 @@
                     <td>{{$member->nim}}</td>
                     <td>{{$member->semester}}</td>
                     <td>{{$member->generation}}</td>
+                    <td>{{$member->phone}}</td>
                     <td>{{$member->address}}</td>
                     <td>{{$member->major->name}}</td>
                     <td>{{$member->study_program->name}}</td>
+                    <td>
+                        <div class="ui icon buttons actions-btn">
+                            <a data-data="{{$member}}" href="#" class="ui button see">
+                                <i class="eye icon"></i>
+                            </a>
+                        </div>
+                    </td>
                 </tr>
                 @endforeach 
                 @else
                 <tr>
-                    <td colspan="7" class="row-no-data">Belum ada data</td>
+                    <td colspan="9" class="row-no-data">Belum ada data</td>
                 </tr>
                 @endif
             </tbody>
             <tfoot>
                 <tr>
-                    <th colspan="7">
+                    <th colspan="9">
                         @if ($members->lastPage() > 1)
                         <div class="ui pagination menu">
                             <a href="{{ $members->previousPageUrl() }}" class="{{ ($members->currentPage() == 1) ? ' disabled' : '' }} item">
@@ -70,6 +77,25 @@
         </table>
     </div>
 </div>
-
-<div class="ui divider horizontal end-page">Akhir page Keanggotaan</div>
+<div class="ui modal detail">
+    <div class="header"></div>
+    <div class="content">
+        <b>Hobi</b>
+        <p id="hobi"></p>
+        <b>Alasan Bergabung</b>
+        <p id="alasan"></p>
+    </div>
+</div>
+<script>
+    $(document).ready(function(){
+        $('.see').on('click', function(){
+            var data = $(this).data('data');
+            $('.detail #hobi').text(data.hobbies);
+            $('.detail #alasan').text(data.reason);
+            $('.detail .header').text(data.full_name);
+            console.log(data);
+            $('.ui.modal.detail').modal('show');
+        });
+    });
+</script>
 @endsection
