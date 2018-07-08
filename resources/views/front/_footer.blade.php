@@ -1,7 +1,8 @@
 <div class="ui inverted vertical footer segment">
     <div class="ui container">
         <div class="ui stackable inverted divided equal height stackable grid">
-        <div class="three wide column">
+            <h3 style="text-align: center; width: 100%; padding: 30px;">Copyright &copy; 2018 - All Right Reserved</h3>
+        {{-- <div class="three wide column">
             <h4 class="ui inverted header">
             About
             </h4>
@@ -24,7 +25,7 @@
             <p>
             Extra space for a call to action inside the footer that could help re-engage users.
             </p>
-        </div>
+        </div> --}}
         </div>
     </div>
 </div>

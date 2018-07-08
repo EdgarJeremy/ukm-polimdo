@@ -13,30 +13,33 @@
         <div class="ui stackable inverted divided equal height stackable grid">
             <div class="three wide column">
                 <h4 class="ui inverted header">
-                    About
+                    Aktifitas
                 </h4>
                 <div class="ui inverted link list">
-                    <a class="item" href="homepage.html#"> Sitemap</a><a class="item" href="homepage.html#"> Contact Us</a>
-                    <a
-                        class="item" href="homepage.html#"> Religious Ceremonies</a><a class="item" href="homepage.html#"> Gazebo Plans</a>
+                    <a class="item" href="{{route('ukm-kegiatan', ['id' => $id])}}"> Kegiatan</a>
+                    <a class="item" href="{{route('ukm-pengumuman', ['id' => $id])}}"> Pengumuman</a>
+                    @if($ukm->registration)
+                    <a class="item" href="{{route('ukm-pendaftaran', ['id' => $id])}}"> Pendaftaran</a>
+                    @endif
                 </div>
             </div>
             <div class="three wide column">
                 <h4 class="ui inverted header">
-                    Services
+                    UKM
                 </h4>
                 <div class="ui inverted link list">
-                    <a class="item" href="homepage.html#"> Banana Pre-Order</a><a class="item" href="homepage.html#"> DNA FAQ</a>
-                    <a
-                        class="item" href="homepage.html#"> How To Access</a><a class="item" href="homepage.html#"> Favorite X-Men</a>
+                        <a class="item" href="{{route('ukm-tentang', ['id' => $id])}}"> Tentang</a>
+                        <a class="item" href="{{route('ukm-faq', ['id' => $id])}}"> FAQ</a>
+                        <a class="item" href="{{route('ukm-kontak', ['id' => $id])}}"> Hubungi Kami</a>
+                        <a class="item" href="{{route('ukm-galeri', ['id' => $id])}}"> Galeri</a>
                 </div>
             </div>
             <div class="seven wide column">
                 <h4 class="ui inverted header">
-                    Footer Header
+                    {{$ukm->name}}
                 </h4>
                 <p>
-                    Extra space for a call to action inside the footer that could help re-engage users.
+                    {{$ukm->profile}}
                 </p>
             </div>
         </div>
