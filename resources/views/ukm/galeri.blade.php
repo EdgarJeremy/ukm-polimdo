@@ -5,7 +5,7 @@
 <div class="row" id="page-header">
     <div class="ui basic segment">
         <h2 class="ui header">
-            Galeri {{$tahun}}
+            Galeri
         </h2>
         <span>A simple example of creating a blog with Semanti-UI.</span>
     </div>
@@ -25,7 +25,9 @@
                 @foreach($galleries as $gallery)
                 <div class="column">
                     <div class="ui segment">
-                        <img src="{{asset('/storage/galleries/'.$gallery->file)}}" />
+                        <a class="img-link" href="{{asset('/storage/galleries/'.$gallery->file)}}">
+                            <img src="{{asset('/storage/galleries/'.$gallery->file)}}" />
+                        </a>
                         <hr />
                         <p><i class="align left icon"></i> Judul : {{$gallery->name}}</p>
                         <p><i class="calendar alternate icon"></i> Diupload : {{$gallery->created_at}}</p>
@@ -50,4 +52,12 @@
 </div>
 @endif
 <div class="ui divider horizontal end-page">Akhir page Galeri</div>
+<script>
+    $(document).ready(function(){
+        $('a.img-link').venobox({
+            framewidth: '100%',
+            // frameheight: '300px'
+        });
+    });
+</script>
 @endsection

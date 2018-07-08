@@ -22,7 +22,7 @@ Auth::routes();
  */
 
 Route::get('/', function () {
-    $listUkm = App\Ukm::all();
+    $listUkm = App\Ukm::where('active', 1)->get();
     return view('front.index')->with(['listUkm' => $listUkm]);
 })->name('root');
 
@@ -39,7 +39,7 @@ Route::group(['prefix' => 'ukm'], function(){
     Route::get('/{id}/faq', 'UkmPagesController@faq')->name('ukm-faq');
     Route::get('/{id}/kontak', 'UkmPagesController@kontak')->name('ukm-kontak');
     Route::post('/{id}/kontak', 'UkmPagesController@simpan_kontak');
-    Route::get('/{id}/galeri/{tahun}', 'UkmPagesController@galeri')->name('ukm-galeri');
+    Route::get('/{id}/galeri/', 'UkmPagesController@galeri')->name('ukm-galeri');
     Route::get('/{id}/struktur_organisasi', 'UkmPagesController@struktur_organisasi')->name('ukm-struktur_organisasi');
     Route::get('/{id}/keanggotaan', 'UkmPagesController@keanggotaan')->name('ukm-keanggotaan');
     Route::get('/{id}/pendaftaran', 'UkmPagesController@pendaftaran')->name('ukm-pendaftaran');
@@ -49,7 +49,7 @@ Route::group(['prefix' => 'ukm'], function(){
 /**
  * Back/Administrator Routes 
  */
-Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'usertype:admin']], function(){
     Route::get('/', 'AdminPagesController@index')->name('admin-home');
     Route::get('/message', 'AdminPagesController@message')->name('admin-message');
     Route::get('/delete_message/{id}', 'AdminPagesController@delete_message')->name('admin-delete_message');
@@ -83,4 +83,23 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
         Auth::logout();
         return redirect('/');
     })->name('logout');
+});
+
+Route::group(['prefix' => 'wadir', 'middleware' => ['auth', 'usertype:wadir']], function(){
+
+    Route::get('/', 'WadirPagesController@index')->name('wadir-home');
+    Route::get('/user', 'WadirPagesController@user')->name('wadir-user');
+    Route::post('/user', 'WadirPagesController@save_user');
+    Route::get('/ukm_activity', 'WadirPagesController@ukm_activity')->name('wadir-ukm_activity');
+    Route::get('/ukm_config', 'WadirPagesController@ukm_config')->name('wadir-ukm_config');
+    Route::post('/ukm_config', 'WadirPagesController@save_ukm');
+    Route::get('/ukm_setactive/{id}/{active}', 'WadirPagesController@ukm_setactive')->name('wadir-ukm_setactive');
+    Route::get('/letter_in', 'WadirPagesController@letter_in')->name('wadir-letter_in');
+    Route::get('/letter_out', 'WadirPagesController@letter_out')->name('wadir-letter_out');
+    Route::post('/letter_out', 'WadirPagesController@save_letter');
+
+    Route::get('/logout', function(){
+        Auth::logout();
+        return redirect('/');
+    })->name('wadir-logout');
 });

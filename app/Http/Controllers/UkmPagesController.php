@@ -118,10 +118,10 @@ class UkmPagesController extends Controller
     }
 
     //
-    public function galeri(Request $request, $id, $tahun) {
+    public function galeri(Request $request, $id) {
         $ukm = $this->ukm($id);
         $q = $request->get('q');
-        $galleries = Gallery::where('ukm_id', auth()->user()->ukm_id)
+        $galleries = Gallery::where('ukm_id', $id)
                     ->where('name', 'like', '%'.$q.'%')
                     ->paginate(12);
         $galleries->appends(['q' => $q]);
@@ -129,7 +129,6 @@ class UkmPagesController extends Controller
         return view('ukm.galeri')->with([
             'id' => $id,
             'ukm' => $ukm,
-            'tahun' => $tahun,
             'galleries' => $galleries
         ]);
     }
@@ -187,7 +186,7 @@ class UkmPagesController extends Controller
     }
 
     private function ukm($id) {
-        $ukm = Ukm::findOrFail($id);
+        $ukm = Ukm::where('active', 1)->findOrFail($id);
         $ukm->faqs = json_decode($ukm->faqs);
         return $ukm;
     }

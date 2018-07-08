@@ -15,12 +15,11 @@
     <link href="{{asset('/css/default.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('/css/pandoc-code-highlight.css')}}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="{{asset('/css/ukm.css')}}" />
-    <link rel="stylesheet" href="{{asset('/dist/treant.js/Treant.css')}}" />
+    <link rel="stylesheet" href="{{asset('/dist/venobox/venobox.css')}}" />
     <link rel="icon" href="{{asset('/images/logos/'.$ukm->logo)}}" />
     <script src="{{asset('/dist/jquery/jquery.min.js')}}"></script>
     <script src="{{asset('/dist/semantic-ui/semantic.min.js')}}"></script>
-    <script src="{{asset('/dist/treant.js/vendor/raphael.js')}}"></script>
-    <script src="{{asset('/dist/treant.js/Treant.js')}}"></script>
+    <script src="{{asset('/dist/venobox/venobox.min.js')}}"></script>
     <script>
         window.baseURL = document.head.querySelector('meta[name="base_url"]').content;
     </script>

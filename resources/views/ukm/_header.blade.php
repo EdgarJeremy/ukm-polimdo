@@ -78,24 +78,7 @@
             </div>
 
             <!-- Galeri -->
-            <div class="ui dropdown link pointing item {{
-                Route::currentRouteName() === 'ukm-galeri' ? 'item-active' : ''
-            }} header">
-                <span class="">Galeri</span>
-                <i class="dropdown icon"></i>
-                <div class="menu">
-                    <div class="item" class="item">
-                        <span class="text">Foto</span>
-                        <i class="dropdown icon"></i>
-                        <div class="menu">
-                            <a href="{{route('ukm-galeri', ['id' => $id, 'tahun' => 2015])}}" class="item">2015</a>
-                            <a href="{{route('ukm-galeri', ['id' => $id, 'tahun' => 2016])}}" class="item">2016</a>
-                            <a href="{{route('ukm-galeri', ['id' => $id, 'tahun' => 2017])}}" class="item">2017</a>
-                            <a href="{{route('ukm-galeri', ['id' => $id, 'tahun' => 2018])}}" class="item">2018</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <a class="ui header {{Route::currentRouteName() === 'ukm-galeri' ? 'item-active' : ''}} item" href="{{route('ukm-galeri', ['id' => $id])}}">Galeri</a>
 
         </div>
     </div>

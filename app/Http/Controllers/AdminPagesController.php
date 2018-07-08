@@ -27,7 +27,12 @@ class AdminPagesController extends Controller
     }
 
     public function index() {
-        return view('admin.index');
+        $t_activity = Activity::where('ukm_id', auth()->user()->ukm_id)->count();
+        $t_announcement = Announcement::where('ukm_id', auth()->user()->ukm_id)->count();
+        $t_letter = Letter::where('user_id', auth()->user()->id)->count();
+        $t_gallery = Gallery::where('ukm_id', auth()->user()->ukm_id)->count();
+
+        return view('admin.index')->with(compact('t_activity', 't_announcement', 't_letter', 't_gallery'));
     }
 
     public function message(Request $request){

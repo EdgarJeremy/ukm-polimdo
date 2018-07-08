@@ -15,7 +15,7 @@
             </h3>
             <hr />
             @foreach($activities as $act)
-            <i class="calendar alternate icon"></i> <a href="{{route('ukm-baca_kegiatan', ['id' => $id, 'id_kegiatan' => $act->id_kegiatan])}}">{{$act->name}}</a>
+            <i class="calendar alternate icon"></i> <a href="{{route('ukm-baca_kegiatan', ['id' => $id, 'id_kegiatan' => $act->id])}}">{{$act->name}}</a>
             @endforeach
             <hr />
         </div>
