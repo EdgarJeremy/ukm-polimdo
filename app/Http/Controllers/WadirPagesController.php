@@ -17,6 +17,7 @@ class WadirPagesController extends Controller
     //
     public function index() {
         $visitors = Visitor::all();
+        dd($visitors);
         return view('wadir.index')->with('visitors', $visitors);
     }
     public function user() {
