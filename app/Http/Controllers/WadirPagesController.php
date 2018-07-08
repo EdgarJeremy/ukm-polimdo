@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Visitor;
 use App\Activity;
 use App\Ukm;
 use App\User;
@@ -15,7 +16,8 @@ class WadirPagesController extends Controller
 {
     //
     public function index() {
-        return view('wadir.index');
+        $visitors = Visitor::all();
+        return view('wadir.index')->with('visitors', $visitors);
     }
     public function user() {
         return view('wadir.user');

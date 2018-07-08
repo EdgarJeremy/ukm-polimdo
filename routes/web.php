@@ -22,6 +22,7 @@ Auth::routes();
  */
 
 Route::get('/', function () {
+    Visitor::log();
     $listUkm = App\Ukm::where('active', 1)->get();
     return view('front.index')->with(['listUkm' => $listUkm]);
 })->name('root');

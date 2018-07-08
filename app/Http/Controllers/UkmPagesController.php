@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Visitor;
 use App\Message;
 use App\Ukm;
 use App\Major;
@@ -14,6 +15,11 @@ use App\Gallery;
 
 class UkmPagesController extends Controller
 {
+
+    public function __construct() {
+        Visitor::log();
+    }
+
     //
     public function home($id) {
         $ukm = $this->ukm($id);
