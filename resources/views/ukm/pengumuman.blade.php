@@ -6,7 +6,7 @@
         <h2 class="ui header">
         Daftar Pengumuman
         </h1>
-        <span>Daftar kegiatan UKM {{$ukm->name}}</span>
+        <span>Daftar pengumuman UKM {{$ukm->name}}</span>
     </div>
 </div>
 
@@ -26,7 +26,7 @@
     </div>
     <br />
     @endforeach @else
-    <h3>Belum ada kegiatan</h3>
+    <h3>Belum ada pengumuman</h3>
     @endif
     @if ($announcements->lastPage() > 1)
     <div class="ui pagination menu">

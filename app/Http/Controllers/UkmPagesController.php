@@ -24,7 +24,7 @@ class UkmPagesController extends Controller
     public function home($id) {
         $ukm = $this->ukm($id);
         $announcements = Announcement::where('ukm_id', $id)->limit(10)->get();
-        $activities = Activity::where('ukm_id', $id)->limit(10)->get();
+        $activities = Activity::published()->where('ukm_id', $id)->limit(10)->get();
 
         return view('ukm.index')->with([
             'id' => $id,
@@ -37,7 +37,7 @@ class UkmPagesController extends Controller
     //
     public function kegiatan($id) {
         $ukm = $this->ukm($id);
-        $activities = Activity::where('ukm_id', $id)->paginate(10);
+        $activities = Activity::published()->where('ukm_id', $id)->paginate(10);
 
         return view('ukm.kegiatan')->with([
             'id' => $id,
@@ -48,8 +48,8 @@ class UkmPagesController extends Controller
 
     public function baca_kegiatan($id, $id_kegiatan) {
         $ukm = $this->ukm($id);
-        $activity = Activity::where('ukm_id', $id)->findOrFail($id_kegiatan);
-        $activities = Activity::where('ukm_id', $id)->where('id', '!=', $id_kegiatan)->limit(5)->get();
+        $activity = Activity::published()->where('ukm_id', $id)->findOrFail($id_kegiatan);
+        $activities = Activity::published()->where('ukm_id', $id)->where('id', '!=', $id_kegiatan)->limit(5)->get();
 
         return view('ukm.baca_kegiatan')->with([
             'id' => $id,
@@ -62,7 +62,7 @@ class UkmPagesController extends Controller
     //
     public function pengumuman($id) {
         $ukm = $this->ukm($id);
-        $announcements = Announcement::where('ukm_id', $id)->paginate(10);
+        $announcements = Announcement::published()->where('ukm_id', $id)->paginate(10);
 
         return view('ukm.pengumuman')->with([
             'id' => $id,
@@ -73,8 +73,8 @@ class UkmPagesController extends Controller
 
     public function baca_pengumuman($id, $id_pengumuman) {
         $ukm = $this->ukm($id);
-        $announcement = Announcement::where('ukm_id', $id)->findOrFail($id_pengumuman);
-        $announcements = Announcement::where('ukm_id', $id)->where('id', '!=', $id_pengumuman)->limit(5)->get();
+        $announcement = Announcement::published()->where('ukm_id', $id)->findOrFail($id_pengumuman);
+        $announcements = Announcement::published()->where('ukm_id', $id)->where('id', '!=', $id_pengumuman)->limit(5)->get();
 
         return view('ukm.baca_pengumuman')->with([
             'id' => $id,

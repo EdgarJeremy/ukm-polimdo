@@ -10,6 +10,9 @@
     <div class="ui divider"></div>
     <div class="row">
         <h3>Daftar Pengunjung</h3>
+        <div class="fluid">
+            <a class="ui button red" href="{{route('wadir-clear_visitor')}}"><i class="trash alternate icon"></i> Clear</a>
+        </div>
         <table class="ui very basic collapsing celled table fluid">
             <thead>
                 <tr>

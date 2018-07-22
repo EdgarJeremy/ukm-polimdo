@@ -357,6 +357,13 @@ class AdminPagesController extends Controller
         return redirect()->route('admin-activity')->with('status', true);
     }
 
+    public function set_publish_activity($id, $published) {
+        $activity = Activity::where('ukm_id', auth()->user()->ukm_id)->findOrFail($id);
+        $activity->published = $published;
+        $activity->save();
+        return redirect()->route('admin-activity');
+    }
+
     public function announcement(Request $request){
         $q = $request->get('q');
         $announcements = Announcement::where('ukm_id', auth()->user()->ukm_id)
@@ -392,6 +399,13 @@ class AdminPagesController extends Controller
         $announcement = Announcement::where('ukm_id', auth()->user()->ukm_id)->findOrFail($id);
         $t = $announcement->delete();
         return redirect()->route('admin-announcement')->with('status', 'delete');
+    }
+
+    public function set_publish_announcement($id, $published) {
+        $announcement = Announcement::where('ukm_id', auth()->user()->ukm_id)->findOrFail($id);
+        $announcement->published = $published;
+        $announcement->save();
+        return redirect()->route('admin-announcement');
     }
 
 }

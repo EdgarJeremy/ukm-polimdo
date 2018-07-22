@@ -13,4 +13,8 @@ class Activity extends Model
     public function ukm() {
         return $this->belongsTo('App\Ukm');
     }
+
+    public function scopePublished($query) {
+        return $query->where('published', 1);
+    }
 }

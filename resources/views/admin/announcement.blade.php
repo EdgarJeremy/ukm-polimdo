@@ -68,6 +68,11 @@
                                 <i class="trash alternate icon"></i>
                             </a>
                         </div>
+                        <div class="ui icon buttons actions-btn">
+                            <a href="{{route('admin-set_publish_announcement', ['id' => $announcement->id, 'published' => $announcement->published ? 0 : 1])}}" class="ui {{$announcement->published ? 'orange' : 'green'}} button">
+                                <i class="{{$announcement->published ? 'times' : 'check'}} circle icon"></i> {{$announcement->published ? 'Tarik' : 'Publikasi'}}
+                            </a>
+                        </div>
                     </td>
                 </tr>
                 @endforeach 

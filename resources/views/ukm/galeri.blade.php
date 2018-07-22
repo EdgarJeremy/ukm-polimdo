@@ -7,7 +7,7 @@
         <h2 class="ui header">
             Galeri
         </h2>
-        <span>A simple example of creating a blog with Semanti-UI.</span>
+        <span>Lihat kumpulan galeri di {{$ukm->name}}</span>
     </div>
 </div>
 
@@ -31,7 +31,7 @@
                         <hr />
                         <p><i class="align left icon"></i> Judul : {{$gallery->name}}</p>
                         <p><i class="calendar alternate icon"></i> Diupload : {{$gallery->created_at}}</p>
-                    </div>
+                    </div>w
                 </div>
                 @endforeach
             </div>

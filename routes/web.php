@@ -76,9 +76,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'usertype:admin']], 
     Route::get('/activity', 'AdminPagesController@activity')->name('admin-activity');
     Route::post('/activity', 'AdminPagesController@save_activity');
     Route::get('/delete_activity/{id}', 'AdminPagesController@delete_activity')->name('admin-delete_activity');
+    Route::get('/set_publish_activity/{id}/{published}', 'AdminPagesController@set_publish_activity')->name('admin-set_publish_activity');
     Route::get('/announcement', 'AdminPagesController@announcement')->name('admin-announcement');
     Route::post('/announcement', 'AdminPagesController@save_announcement');
     Route::get('/delete_announcement/{id}', 'AdminPagesController@delete_announcement')->name('admin-delete_announcement');
+    Route::get('/set_publish_announcement/{id}/{published}', 'AdminPagesController@set_publish_announcement')->name('admin-set_publish_announcement');
 
     Route::get('/logout', function(){
         Auth::logout();
@@ -89,6 +91,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'usertype:admin']], 
 Route::group(['prefix' => 'wadir', 'middleware' => ['auth', 'usertype:wadir']], function(){
 
     Route::get('/', 'WadirPagesController@index')->name('wadir-home');
+    Route::get('/clear_visitor', 'WadirPagesController@clear_visitor')->name('wadir-clear_visitor');
     Route::get('/user', 'WadirPagesController@user')->name('wadir-user');
     Route::post('/user', 'WadirPagesController@save_user');
     Route::get('/ukm_activity', 'WadirPagesController@ukm_activity')->name('wadir-ukm_activity');

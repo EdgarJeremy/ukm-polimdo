@@ -6,7 +6,7 @@
         <h2 class="ui header">
             Kontak Kami
             </h1>
-            <span>A simple example of creating a blog with Semanti-UI.</span>
+            <span>Kirim pesan/kesan/saran pada kami</span>
     </div>
 </div>
 

@@ -6,7 +6,7 @@
         <h2 class="ui header">
             Keanggotaan
             </h1>
-            <span>A simple example of creating a blog with Semanti-UI.</span>
+            <span>Daftar anggota resmi {{$ukm->name}}</span>
     </div>
 </div>
 
@@ -41,8 +41,7 @@
                     <td>{{$member->major->name}}</td>
                     <td>{{$member->study_program->name}}</td>
                 </tr>
-                @endforeach 
-                @else
+                @endforeach @else
                 <tr>
                     <td colspan="7" class="row-no-data">Belum ada data</td>
                 </tr>
@@ -55,7 +54,8 @@
                         <div class="ui pagination menu">
                             <a href="{{ $members->previousPageUrl() }}" class="{{ ($members->currentPage() == 1) ? ' disabled' : '' }} item">
                                     Previous
-                                </a> @for ($i = 1; $i <=$members->lastPage(); $i++)
+                                </a> @for ($i = 1; $i
+                            <=$members->lastPage(); $i++)
                                 <a href="{{ $members->url($i) }}" class="{{ ($members->currentPage() == $i) ? ' active' : '' }} item">
                                         {{ $i }}
                                     </a> @endfor
