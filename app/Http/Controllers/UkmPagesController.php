@@ -23,7 +23,7 @@ class UkmPagesController extends Controller
     //
     public function home($id) {
         $ukm = $this->ukm($id);
-        $announcements = Announcement::where('ukm_id', $id)->limit(10)->get();
+        $announcements = Announcement::published()->where('ukm_id', $id)->limit(10)->get();
         $activities = Activity::published()->where('ukm_id', $id)->limit(10)->get();
 
         return view('ukm.index')->with([
