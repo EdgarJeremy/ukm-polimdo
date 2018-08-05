@@ -76,7 +76,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'usertype:admin']], 
     Route::get('/activity', 'AdminPagesController@activity')->name('admin-activity');
     Route::post('/activity', 'AdminPagesController@save_activity');
     Route::get('/delete_activity/{id}', 'AdminPagesController@delete_activity')->name('admin-delete_activity');
-    Route::get('/set_publish_activity/{id}/{published}', 'AdminPagesController@set_publish_activity')->name('admin-set_publish_activity');
     Route::get('/announcement', 'AdminPagesController@announcement')->name('admin-announcement');
     Route::post('/announcement', 'AdminPagesController@save_announcement');
     Route::get('/delete_announcement/{id}', 'AdminPagesController@delete_announcement')->name('admin-delete_announcement');
@@ -95,6 +94,7 @@ Route::group(['prefix' => 'wadir', 'middleware' => ['auth', 'usertype:wadir']], 
     Route::get('/user', 'WadirPagesController@user')->name('wadir-user');
     Route::post('/user', 'WadirPagesController@save_user');
     Route::get('/ukm_activity', 'WadirPagesController@ukm_activity')->name('wadir-ukm_activity');
+    Route::get('/set_publish_activity/{id}/{published}', 'WadirPagesController@set_publish_activity')->name('wadir-set_publish_activity');
     Route::get('/ukm_config', 'WadirPagesController@ukm_config')->name('wadir-ukm_config');
     Route::post('/ukm_config', 'WadirPagesController@save_ukm');
     Route::get('/ukm_setactive/{id}/{active}', 'WadirPagesController@ukm_setactive')->name('wadir-ukm_setactive');
@@ -106,4 +106,16 @@ Route::group(['prefix' => 'wadir', 'middleware' => ['auth', 'usertype:wadir']], 
         Auth::logout();
         return redirect('/');
     })->name('wadir-logout');
+
+});
+
+Route::group(['prefix' => 'super', 'middleware' => ['auth', 'usertype:super']], function(){
+
+    Route::get('/', 'SuperPagesController@index')->name('super-home');
+
+    Route::get('/logout', function(){
+        Auth::logout();
+        return redirect('/');
+    })->name('super-logout');
+
 });

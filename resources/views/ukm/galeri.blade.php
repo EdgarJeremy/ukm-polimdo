@@ -25,13 +25,20 @@
                 @foreach($galleries as $gallery)
                 <div class="column">
                     <div class="ui segment">
-                        <a class="img-link" href="{{asset('/storage/galleries/'.$gallery->file)}}">
+                        @if(pathinfo($gallery->file, PATHINFO_EXTENSION) === 'mp4' || pathinfo($gallery->file, PATHINFO_EXTENSION) === 'mov' || pathinfo($gallery->file, PATHINFO_EXTENSION) === 'avi' || pathinfo($gallery->file, PATHINFO_EXTENSION) === 'mkv')
+                        <video width="100%" controls>
+                            <source src="{{asset('/storage/galleries/'.$gallery->file)}}" type="video/mp4"/>
+                        </video>
+                        @else
+                        <img src="{{asset('/storage/galleries/'.$gallery->file)}}" />
+                        @endif
+                        {{-- <a class="img-link" href="{{asset('/storage/galleries/'.$gallery->file)}}">
                             <img src="{{asset('/storage/galleries/'.$gallery->file)}}" />
-                        </a>
+                        </a> --}}
                         <hr />
                         <p><i class="align left icon"></i> Judul : {{$gallery->name}}</p>
                         <p><i class="calendar alternate icon"></i> Diupload : {{$gallery->created_at}}</p>
-                    </div>w
+                    </div>
                 </div>
                 @endforeach
             </div>

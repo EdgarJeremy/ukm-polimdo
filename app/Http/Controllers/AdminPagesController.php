@@ -18,6 +18,7 @@ use App\Gallery;
 use App\Member;
 use App\Activity;
 use App\Announcement;
+use Mail;
 
 class AdminPagesController extends Controller
 {
@@ -227,7 +228,7 @@ class AdminPagesController extends Controller
     public function save_letter(Request $request) {
         $request->validate([
             'name' => 'required',
-            'file_file' => 'required|mimes:doc,docx,ppt,xls,pdf',
+            'file_file' => 'required|mimes:doc,docx,ppt,xls,pdf,jpeg,jpg,png,bmp',
         ]);
         $req = $request->all();
         if(isset($req['private'])) {
@@ -260,6 +261,7 @@ class AdminPagesController extends Controller
         $q = $request->get('q');
         $galleries = Gallery::where('ukm_id', auth()->user()->ukm_id)
                     ->where('name', 'like', '%'.$q.'%')
+                    ->orderBy('created_at', 'desc')
                     ->paginate(12);
         $galleries->appends(['q' => $q]);
         return view('admin.gallery')->with('galleries', $galleries);
@@ -268,14 +270,13 @@ class AdminPagesController extends Controller
     public function save_gallery(Request $request) {
         $request->validate([
             'name' => 'required',
-            'file_file' => 'required|mimes:jpg,png,jpeg'
+            'file_file' => 'required|mimes:jpg,png,jpeg,mp4,mov,avi,mkv'
         ]);
         $req = $request->all();
         $path = $req['file_file']->store('public/galleries');
         $req['file'] = @end(explode('/', $path));
         $req['ukm_id'] = auth()->user()->ukm_id;
         $gallery = Gallery::create($req);
-        
         return redirect()->route('admin-gallery')->with('status', true);
     }
 
@@ -353,15 +354,13 @@ class AdminPagesController extends Controller
         $req['file'] = @end(explode('/', $path));
         $req['code'] = rand(0, 9999);
         $activity = Activity::create($req);
-
+        $user = auth()->user();
+        $wadir = User::where('type', 'wadir')->first();
+        Mail::send('mails.activity_notif', ['user' => $user, 'activity' => $activity], function($m) use($user, $wadir){
+            $m->from($user->email, $user->name);
+            $m->to($wadir->email, $wadir->name)->subject($user->ukm->name . ' menambah kegiatan baru');
+        });
         return redirect()->route('admin-activity')->with('status', true);
-    }
-
-    public function set_publish_activity($id, $published) {
-        $activity = Activity::where('ukm_id', auth()->user()->ukm_id)->findOrFail($id);
-        $activity->published = $published;
-        $activity->save();
-        return redirect()->route('admin-activity');
     }
 
     public function announcement(Request $request){

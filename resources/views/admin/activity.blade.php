@@ -66,11 +66,11 @@
                                 <i class="trash alternate icon"></i> Hapus
                             </a>
                         </div>
-                        <div class="ui icon buttons actions-btn">
+                        {{-- <div class="ui icon buttons actions-btn">
                             <a href="{{route('admin-set_publish_activity', ['id' => $activity->id, 'published' => $activity->published ? 0 : 1])}}" class="ui {{$activity->published ? 'orange' : 'green'}} button">
                                 <i class="{{$activity->published ? 'times' : 'check'}} circle icon"></i> {{$activity->published ? 'Tarik' : 'Publikasi'}}
                             </a>
-                        </div>
+                        </div> --}}
                     </td>
                 </tr>
                 @endforeach 

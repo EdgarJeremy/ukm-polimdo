@@ -47,6 +47,7 @@
                     <th>Status Kegiatan</th>
                     <th>Waktu Kegiatan</th>
                     <th>Waktu Dibuat</th>
+                    <th>Opsi</th>
                 </tr>
             </thead>
             <tbody>
@@ -57,6 +58,11 @@
                     <td>{{$activity->status}}</td>
                     <td>{{$activity->implementation_date}}</td>
                     <td>{{$activity->created_at}}</td>
+                    <td>
+                        <a href="{{route('wadir-set_publish_activity', ['id' => $activity->id, 'published' => $activity->published ? 0 : 1])}}" class="ui {{$activity->published ? 'orange' : 'green'}} button">
+                            <i class="{{$activity->published ? 'times' : 'check'}} circle icon"></i> {{$activity->published ? 'Tarik' : 'Publikasi'}}
+                        </a>
+                    </td>
                 </tr>
                 @endforeach 
                 @else

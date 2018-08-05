@@ -61,6 +61,7 @@ class WadirPagesController extends Controller
     public function ukm_activity(Request $request){
         $q = $request->get('q');
         $activities = Activity::with(['ukm'])->where('name', 'like', '%'.$q.'%')
+                    ->orderBy('created_at', 'desc')
                     ->paginate(10);
         $activities->appends(['q' => $q]);
 
@@ -126,6 +127,12 @@ class WadirPagesController extends Controller
         return redirect()->route('wadir-ukm_config')->with('status', true);
     }
 
+    public function set_publish_activity($id, $published) {
+        $activity = Activity::findOrFail($id);
+        $activity->published = $published;
+        $activity->save();
+        return redirect()->route('wadir-ukm_activity');
+    }
     
     public function letter_in(Request $request) {
         $q = $request->get('q');

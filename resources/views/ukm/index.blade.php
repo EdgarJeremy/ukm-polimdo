@@ -10,7 +10,7 @@
     </div>
 </div>
 
-<div class="row">
+<div class="row stackable">
     <div class="five wide left floated column">
         <div class="ui segment">
             <h3 class="ui header">

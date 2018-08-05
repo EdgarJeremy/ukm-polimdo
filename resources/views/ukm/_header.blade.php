@@ -16,7 +16,7 @@
         </div>
     </div>
 
-    <div class="ui fluid seven item borderless pointing menu second">
+    <div class="ui stackable fluid seven item borderless pointing menu second">
         <div class="ui container">
 
             <!-- Portal -->

@@ -16,7 +16,13 @@ class CheckUserType
     public function handle($request, Closure $next, $type)
     {
         if($request->user()->type !== $type) {
-            return redirect()->route($type === 'admin' ? 'wadir-home' : 'admin-home');
+            if($request->user()->type === 'admin') {
+                return redirect()->route('admin-home');
+            } elseif($request->user()->type === 'wadir') {
+                return redirect()->route('wadir-home');
+            } elseif($request->user()->type === 'super') {
+                return redirect()->route('super-home');
+            }
         }
 
         return $next($request);

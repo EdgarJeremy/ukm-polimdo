@@ -41,8 +41,10 @@ class LoginController extends Controller
     public function authenticated(Request $request, $user) {
         if($user->type === 'admin') {
             return redirect()->route('admin-home');
-        } else {
+        } elseif($user->type === 'wadir') {
             return redirect()->route('wadir-home');
+        } elseif($user->type === 'super') {
+            return redirect()->route('super-home');
         }
     }
 }

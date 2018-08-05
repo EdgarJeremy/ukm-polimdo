@@ -24,7 +24,7 @@ class UkmPagesController extends Controller
     public function home($id) {
         $ukm = $this->ukm($id);
         $announcements = Announcement::published()->where('ukm_id', $id)->limit(10)->get();
-        $activities = Activity::published()->where('ukm_id', $id)->limit(10)->get();
+        $activities = Activity::published()->where('ukm_id', $id)->orderBy('created_at', 'desc')->limit(10)->get();
 
         return view('ukm.index')->with([
             'id' => $id,
@@ -129,6 +129,7 @@ class UkmPagesController extends Controller
         $q = $request->get('q');
         $galleries = Gallery::where('ukm_id', $id)
                     ->where('name', 'like', '%'.$q.'%')
+                    ->orderBy('created_at', 'desc')
                     ->paginate(12);
         $galleries->appends(['q' => $q]);
 
