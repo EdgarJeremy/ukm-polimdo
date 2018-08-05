@@ -112,6 +112,7 @@ Route::group(['prefix' => 'wadir', 'middleware' => ['auth', 'usertype:wadir']], 
 Route::group(['prefix' => 'super', 'middleware' => ['auth', 'usertype:super']], function(){
 
     Route::get('/', 'SuperPagesController@index')->name('super-home');
+    Route::post('/', 'SuperPagesController@save_user');
 
     Route::get('/logout', function(){
         Auth::logout();
